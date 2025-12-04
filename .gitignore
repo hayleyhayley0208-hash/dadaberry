@@ -1,6 +1,7 @@
 # compiled output
 /dist
-/netlify/functions
+/netlify/functions/*.js
+/netlify/functions/*.js.map
 /node_modules
 
 # Logs
