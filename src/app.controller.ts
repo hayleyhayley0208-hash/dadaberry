@@ -567,9 +567,10 @@ export class AppController {
         <div class="header-container">
             <a href="/"><img src="/imgs/dadaberry-logo.png" alt="DadaBerry Logo" class="header-logo"></a>
             <nav class="nav-links">
+                <a href="/">Home</a>
                 <a href="/services">Services</a>
                 <a href="#portfolio">Portfolio</a>
-                <a href="#contact">Contact Us</a>
+                <a href="/contact">Contact Us</a>
             </nav>
         </div>
     </header>
@@ -716,7 +717,7 @@ export class AppController {
             <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">
                 Let's bring your creative vision to life. Get in touch and let's start your next project.
             </p>
-            <a href="#contact" class="cta-button">Start Your Project</a>
+            <a href="/contact" class="cta-button">Start Your Project</a>
         </div>
     </div>
 </body>
@@ -822,6 +823,433 @@ export class AppController {
             padding: 4rem 0;
             text-align: center;
             background: #986DB2;
+        }
+        .portrait-section {
+            background: #986DB2;
+            padding: 6rem 0;
+        }
+        .portrait-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+        .portrait-text {
+            text-align: center;
+        }
+        .portrait-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0;
+            line-height: 1.1;
+        }
+        .portrait-images {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            align-items: stretch;
+        }
+        .portrait-images img {
+            flex: 1;
+            width: 0;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .portrait-images img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+        @media (max-width: 968px) {
+            .portrait-title {
+                font-size: 4rem;
+            }
+            .portrait-images {
+                flex-direction: column;
+            }
+            .portrait-images img {
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .portrait-title {
+                font-size: 3rem;
+            }
+        }
+        .retouching-section {
+            background: #f5f5f5;
+            padding: 6rem 0;
+        }
+        .retouching-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+        .retouching-text {
+            text-align: center;
+        }
+        .retouching-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 0;
+            line-height: 1.1;
+        }
+        .before-after-container {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            cursor: col-resize;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .before-after-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 60%;
+        }
+        .before-after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            pointer-events: none;
+        }
+        .before-image {
+            z-index: 1;
+        }
+        .after-image {
+            z-index: 2;
+            clip-path: inset(0 50% 0 0);
+        }
+        .before-after-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            z-index: 3;
+            transform: translateX(-50%);
+            cursor: col-resize;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .before-after-slider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 3px solid #986DB2;
+        }
+        .before-after-slider::after {
+            content: '◀ ▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #986DB2;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .before-after-labels {
+            position: absolute;
+            top: 20px;
+            z-index: 4;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .before-label {
+            left: 20px;
+            color: #666;
+        }
+        .after-label {
+            right: 20px;
+            color: #986DB2;
+        }
+        @media (max-width: 968px) {
+            .retouching-title {
+                font-size: 4rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .retouching-title {
+                font-size: 3rem;
+            }
+            .before-after-labels {
+                font-size: 1rem;
+                padding: 0.4rem 1rem;
+            }
+        }
+        .film-section {
+            background: white;
+            padding: 6rem 0;
+        }
+        .film-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .film-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .film-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        .film-images {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .film-images img {
+            position: relative;
+        }
+        .film-images img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .film-images img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+        @media (max-width: 968px) {
+            .film-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .film-title {
+                font-size: 4rem;
+                text-align: center;
+            }
+        }
+        @media (max-width: 768px) {
+            .film-title {
+                font-size: 3rem;
+            }
+        }
+        .product-section {
+            background: #f5f5f5;
+            padding: 6rem 0;
+        }
+        .product-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+        .product-text {
+            text-align: center;
+        }
+        .product-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 0;
+            line-height: 1.1;
+        }
+        .product-images {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            align-items: stretch;
+        }
+        .product-images img {
+            position: relative;
+        }
+        .product-images img {
+            flex: 1;
+            width: 0;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .product-images img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+        @media (max-width: 968px) {
+            .product-title {
+                font-size: 4rem;
+            }
+            .product-images {
+                flex-direction: column;
+            }
+            .product-images img {
+                width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .product-title {
+                font-size: 3rem;
+            }
+        }
+        .article-section {
+            background: white;
+            padding: 6rem 0;
+        }
+        .article-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .article-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .article-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        .article-images {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .article-images img {
+            position: relative;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .article-images img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+        @media (max-width: 968px) {
+            .article-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .article-title {
+                font-size: 4rem;
+                text-align: center;
+            }
+        }
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 3rem;
+            }
+        }
+        .services-cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #986DB2 0%, #7A5A8F 100%);
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .services-cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .services-cta-section p {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .services-cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #986DB2;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+            margin-top: 2rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .services-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.5);
+        }
+        @media (max-width: 768px) {
+            .services-cta-section {
+                padding: 3rem 1.5rem;
+            }
+            .services-cta-section h2 {
+                font-size: 2rem;
+            }
+            .services-cta-button {
+                padding: 1rem 2.5rem;
+                font-size: 1rem;
+            }
         }
         .services-title {
             font-family: 'Poppins', sans-serif;
@@ -935,37 +1363,69 @@ export class AppController {
         }
     </style>
     <script>
-        let currentServiceIndex = 0;
-        let serviceSlides;
-        const totalServices = 3;
-        
-        function initServicesCarousel() {
-            serviceSlides = document.querySelectorAll('.services-carousel-slide');
-            if (serviceSlides.length > 0) {
-                serviceSlides[0].classList.add('active');
+        function initBeforeAfter() {
+            const container = document.getElementById('beforeAfterContainer');
+            const slider = document.getElementById('slider');
+            const afterImage = document.getElementById('afterImage');
+            
+            if (!container || !slider || !afterImage) return;
+            
+            let isDragging = false;
+            let startX = 0;
+            let currentX = 0;
+            let sliderPosition = 50;
+            
+            function updateSlider(position) {
+                sliderPosition = Math.max(0, Math.min(100, position));
+                slider.style.left = sliderPosition + '%';
+                const clipValue = 100 - sliderPosition;
+                afterImage.style.clipPath = 'inset(0 ' + clipValue + '% 0 0)';
             }
+            
+            function handleStart(e) {
+                isDragging = true;
+                startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+                container.style.cursor = 'col-resize';
+            }
+            
+            function handleMove(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+                const rect = container.getBoundingClientRect();
+                const x = currentX - rect.left;
+                const percentage = (x / rect.width) * 100;
+                updateSlider(percentage);
+            }
+            
+            function handleEnd() {
+                isDragging = false;
+                container.style.cursor = 'col-resize';
+            }
+            
+            function preventDefault(e) {
+                e.preventDefault();
+            }
+            
+            slider.addEventListener('mousedown', handleStart);
+            container.addEventListener('mousedown', handleStart);
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            
+            slider.addEventListener('touchstart', handleStart, { passive: false });
+            container.addEventListener('touchstart', handleStart, { passive: false });
+            document.addEventListener('touchmove', handleMove, { passive: false });
+            document.addEventListener('touchend', handleEnd);
+            
+            // Prevent image selection
+            container.addEventListener('dragstart', preventDefault);
+            container.addEventListener('selectstart', preventDefault);
+            
+            // Initialize at 50%
+            updateSlider(50);
         }
         
-        function showService(index) {
-            if (!serviceSlides) return;
-            serviceSlides.forEach(slide => slide.classList.remove('active'));
-            if (serviceSlides[index]) {
-                serviceSlides[index].classList.add('active');
-            }
-        }
-        
-        function changeService(direction) {
-            if (typeof direction === 'number') {
-                currentServiceIndex += direction;
-                if (currentServiceIndex >= totalServices) currentServiceIndex = 0;
-                if (currentServiceIndex < 0) currentServiceIndex = totalServices - 1;
-            } else {
-                currentServiceIndex = direction;
-            }
-            showService(currentServiceIndex);
-        }
-        
-        document.addEventListener('DOMContentLoaded', initServicesCarousel);
+        document.addEventListener('DOMContentLoaded', initBeforeAfter);
     </script>
 </head>
 <body>
@@ -973,6 +1433,7 @@ export class AppController {
         <div class="header-container">
             <a href="/"><img src="/imgs/dadaberry-logo.png" alt="DadaBerry Logo" class="header-logo"></a>
             <nav class="nav-links">
+                <a href="/">Home</a>
                 <a href="/services">Services</a>
                 <a href="/#portfolio">Portfolio</a>
                 <a href="/#contact">Contact Us</a>
@@ -988,37 +1449,367 @@ export class AppController {
             </div>
         </div>
         
-        <div class="services-carousel-section">
-            <h2 class="services-title">Portrait Photography</h2>
-            <div class="services-carousel-container">
-            <div class="services-carousel-wrapper">
-                <div class="services-carousel-slide active" onclick="changeService(0)">
-                    <img src="/imgs/id-1.JPG" alt="Service 1">
+        <div class="portrait-section">
+            <div class="portrait-content">
+                <div class="portrait-text">
+                    <h2 class="portrait-title">Portrait Photography</h2>
                 </div>
-                <div class="services-carousel-slide" onclick="changeService(1)">
-                    <img src="/imgs/id-2.jpeg" alt="Service 2">
-                </div>
-                <div class="services-carousel-slide" onclick="changeService(2)">
-                    <img src="/imgs/id-3.jpg" alt="Service 3">
+                <div class="portrait-images">
+                    <img src="/imgs/id-1.JPG" alt="Portrait Photography 1">
+                    <img src="/imgs/id-2.jpeg" alt="Portrait Photography 2">
+                    <img src="/imgs/id-3.jpg" alt="Portrait Photography 3">
                 </div>
             </div>
-            <button class="services-carousel-nav prev" onclick="changeService(-1)">‹</button>
-            <button class="services-carousel-nav next" onclick="changeService(1)">›</button>
+        </div>
+        
+        <div class="retouching-section">
+            <div class="retouching-content">
+                <div class="retouching-text">
+                    <h2 class="retouching-title">Photo Retouching & Finishing</h2>
+                </div>
+                <div class="before-after-container" id="beforeAfterContainer">
+                    <div class="before-after-wrapper">
+                        <img src="/imgs/after.jpg" alt="After" class="before-after-image before-image">
+                        <img src="/imgs/before.JPG" alt="Before" class="before-after-image after-image" id="afterImage">
+                        <div class="before-after-slider" id="slider"></div>
+                        <div class="before-after-labels before-label">Before</div>
+                        <div class="before-after-labels after-label">After</div>
+                    </div>
+                </div>
             </div>
-            <div class="timeline">
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
-                <span class="timeline-tick"></span>
+        </div>
+        
+        <div class="film-section">
+            <div class="film-content">
+                <div class="film-text">
+                    <h2 class="film-title">35MM FILM</h2>
+                </div>
+                <div class="film-images">
+                    <img src="/imgs/35mm-1.jpg" alt="35mm Film 1">
+                    <img src="/imgs/35mm-2.jpg" alt="35mm Film 2">
+                    <img src="/imgs/35mm-3.jpg" alt="35mm Film 3">
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-section">
+            <div class="product-content">
+                <div class="product-text">
+                    <h2 class="product-title">Product Photography & Visual Design</h2>
+                </div>
+                <div class="product-images">
+                    <img src="/imgs/Product-1.JPG" alt="Product Photography 1">
+                    <img src="/imgs/Product-2.JPG" alt="Product Photography 2">
+                    <img src="/imgs/Product-3.JPG" alt="Product Photography 3">
+                </div>
+            </div>
+        </div>
+        
+        <div class="article-section">
+            <div class="article-content">
+                <div class="article-text">
+                    <h2 class="article-title">Article Writing<br>& Page Layout</h2>
+                </div>
+                <div class="article-images">
+                    <img src="/imgs/content-1.jpg" alt="Article Writing 1">
+                    <img src="/imgs/content-2.jpg" alt="Article Writing 2">
+                    <img src="/imgs/content-3.jpg" alt="Article Writing 3">
+                    <img src="/imgs/content-4.jpg" alt="Article Writing 4">
+                </div>
+            </div>
+        </div>
+        
+        <div class="services-cta-section">
+            <h2>Ready to Create Something Amazing?</h2>
+            <p>
+                Let's bring your creative vision to life. Get in touch and let's start your next project.
+            </p>
+            <a href="/contact" class="services-cta-button">Start Your Project</a>
+        </div>
+    </section>
+</body>
+</html>
+    `);
+  }
+
+  @Get('contact')
+  getContactPage(@Res() res: Response) {
+    res.send(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — DadaBerry</title>
+    <link rel="icon" type="image/png" href="/imgs/dadaberry- favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: white;
+            color: #2c3e50;
+            min-height: 100vh;
+            padding-top: 0;
+        }
+        .main-header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-logo {
+            height: 100px;
+            width: auto;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #986DB2;
+        }
+        .contact-hero-section {
+            padding-top: 123px;
+            padding-bottom: 0;
+            position: relative;
+            background: white;
+        }
+        .contact-hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        .contact-hero-text {
+            flex: 1;
+        }
+        .contact-hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        .contact-container {
+            width: 100%;
+            padding: 6rem 0;
+            background: #986DB2;
+        }
+        .contact-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: stretch;
+        }
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form-text {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: #000000;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+        .contact-image-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            height: 100%;
+        }
+        .contact-image-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #986DB2;
+        }
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: #986DB2;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 8px 25px rgba(152, 109, 178, 0.4);
+        }
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(152, 109, 178, 0.6);
+        }
+        .submit-button:active {
+            transform: translateY(-1px);
+        }
+        .contact-info {
+            margin-top: 1rem;
+        }
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        @media (max-width: 968px) {
+            .contact-hero-title { font-size: 4rem; }
+            .contact-content { grid-template-columns: 1fr; gap: 3rem; padding: 0 1rem; }
+        }
+        @media (max-width: 768px) {
+            .contact-hero { flex-direction: column; padding: 2rem 1rem; }
+            .contact-hero-title { font-size: 3rem; text-align: center; }
+            .contact-container { padding: 2rem 0; }
+            .contact-content { padding: 0 1rem; }
+            .contact-form { padding: 2rem 1.5rem; }
+            .header-logo { height: 50px; }
+            .nav-links { gap: 1rem; }
+            .nav-links a { font-size: 0.95rem; }
+        }
+        @media (max-width: 480px) {
+            .contact-hero-title { font-size: 2.5rem; }
+            .contact-form { padding: 1.5rem 1rem; }
+            .header-logo { height: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/"><img src="/imgs/dadaberry-logo.png" alt="DadaBerry Logo" class="header-logo"></a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/#portfolio">Portfolio</a>
+                <a href="/contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    <div class="header-line"></div>
+    
+    <section class="contact-hero-section">
+        <div class="contact-hero">
+            <div class="contact-hero-text">
+                <h1 class="contact-hero-title">Contact Us</h1>
             </div>
         </div>
     </section>
+    
+    <div class="contact-container">
+        <div class="contact-content">
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Send Message</button>
+                <p class="contact-form-text">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            </form>
+            
+            <div class="contact-image-section">
+                <img src="/imgs/contact.jpg" alt="Contact">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send the data to a server
+            // For now, we'll just show an alert
+            alert('Thank you for your message! We will get back to you soon.');
+            form.reset();
+        }
+    </script>
 </body>
 </html>
     `);
