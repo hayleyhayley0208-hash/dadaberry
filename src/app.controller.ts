@@ -1766,7 +1766,7 @@ export class AppController {
     
     <div class="contact-container">
         <div class="contact-content">
-            <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+            <form class="contact-form" name="contact" method="POST" netlify netlify-honeypot="bot-field" id="contactForm">
                 <input type="hidden" name="form-name" value="contact">
                 <p style="display: none;">
                     <label>Don't fill this out if you're human: <input name="bot-field" /></label>
