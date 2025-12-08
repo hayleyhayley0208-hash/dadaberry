@@ -1766,7 +1766,12 @@ export class AppController {
     
     <div class="contact-container">
         <div class="contact-content">
-            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+            <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+                <input type="hidden" name="form-name" value="contact">
+                <p style="display: none;">
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                </p>
+                
                 <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -1789,6 +1794,9 @@ export class AppController {
                 
                 <button type="submit" class="submit-button">Send Message</button>
                 <p class="contact-form-text">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <div id="form-success" style="display: none; margin-top: 1rem; padding: 1rem; background: #d4edda; color: #155724; border-radius: 8px;">
+                    <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you soon.
+                </div>
             </form>
             
             <div class="contact-image-section">
@@ -1798,16 +1806,35 @@ export class AppController {
     </div>
     
     <script>
-        function handleSubmit(event) {
-            event.preventDefault();
+        // Handle form submission with Netlify
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
             const form = event.target;
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
+            const submitButton = form.querySelector('button[type="submit"]');
+            const successMessage = document.getElementById('form-success');
             
-            // Here you would typically send the data to a server
-            // For now, we'll just show an alert
-            alert('Thank you for your message! We will get back to you soon.');
-            form.reset();
+            // Show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            // Let Netlify handle the form submission
+            // The form will submit normally, and Netlify will process it
+            
+            // After a short delay, show success message (Netlify will redirect or we can show inline)
+            setTimeout(function() {
+                successMessage.style.display = 'block';
+                form.reset();
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 500);
+        });
+        
+        // Handle Netlify form redirect (if configured)
+        if (window.location.search.includes('submitted=true')) {
+            document.getElementById('form-success').style.display = 'block';
+            document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>

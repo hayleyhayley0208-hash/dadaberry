@@ -12,6 +12,13 @@
   to = "/imgs/:splat"
   status = 200
 
+# Handle form submissions (Netlify Forms intercepts these automatically)
+[[redirects]]
+  from = "/contact"
+  to = "/.netlify/functions/serverless"
+  status = 200
+  force = false
+
 # All other routes go to serverless function
 [[redirects]]
   from = "/*"
