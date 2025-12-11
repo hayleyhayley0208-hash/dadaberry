@@ -5,13 +5,17 @@ import { createReadStream, existsSync } from 'fs';
 
 @Controller()
 export class AppController {
-  @Get('/imgs/:filename')
-  serveImage(@Param('filename') filename: string, @Res() res: Response) {
-    const filePath = join(process.cwd(), 'imgs', filename);
+  @Get('/imgs/*')
+  serveImage(@Param('0') filepath: string, @Res() res: Response) {
+    const filePath = join(process.cwd(), 'imgs', filepath);
     if (existsSync(filePath)) {
       const stream = createReadStream(filePath);
-      if (filename.endsWith('.png')) {
+      if (filepath.endsWith('.png')) {
         res.setHeader('Content-Type', 'image/png');
+      } else if (filepath.endsWith('.jpeg') || filepath.endsWith('.JPEG')) {
+        res.setHeader('Content-Type', 'image/jpeg');
+      } else if (filepath.endsWith('.jpg') || filepath.endsWith('.JPG')) {
+        res.setHeader('Content-Type', 'image/jpeg');
       } else {
         res.setHeader('Content-Type', 'image/jpeg');
       }
@@ -119,11 +123,23 @@ export class AppController {
             width: 100%;
             height: 100%;
             flex-shrink: 0;
+            position: relative;
         }
         .carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        .carousel-location {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            z-index: 10;
         }
         .carousel-nav {
             position: absolute;
@@ -226,6 +242,65 @@ export class AppController {
         .tagline { font-size: 1.5rem; color: rgba(255, 255, 255, 0.95); font-weight: 300; margin-bottom: 3rem; font-family: 'Poppins', sans-serif; }
         .card { background: white; border-radius: 0; padding: 4rem 3rem; box-shadow: none; margin-bottom: 3rem; }
         .intro-card { background: white; border-radius: 0; padding: 4rem 3rem; box-shadow: none; margin-bottom: 3rem; width: 100%; max-width: 100%; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: white;
+            overflow: hidden;
+        }
+        .service-card-image {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+        .service-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        .service-card-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            width: 90%;
+        }
+        .service-card-description {
+            padding: 1.5rem;
+            background: white;
+        }
+        .service-card-description p {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+        @media (max-width: 968px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .service-card-image {
+                height: 300px;
+            }
+            .service-card-title {
+                font-size: 1.5rem;
+            }
+        }
         .gallery-card { 
             background: white; 
             border-radius: 0; 
@@ -569,7 +644,7 @@ export class AppController {
             <nav class="nav-links">
                 <a href="/">Home</a>
                 <a href="/services">Services</a>
-                <a href="#portfolio">Portfolio</a>
+                <a href="/portfolio">Portfolio</a>
                 <a href="/contact">Contact Us</a>
             </nav>
         </div>
@@ -580,21 +655,27 @@ export class AppController {
             <div class="carousel-wrapper">
                 <div class="carousel-slide" data-slide="4">
                     <img src="/imgs/carousel-4.JPG" alt="Carousel Image 4">
+                    <span class="carousel-location">New York - USA</span>
                 </div>
                 <div class="carousel-slide" data-slide="1">
                     <img src="/imgs/carousel-1.jpg" alt="Carousel Image 1">
+                    <span class="carousel-location">Kaohsiung - Taiwan</span>
                 </div>
                 <div class="carousel-slide" data-slide="2">
                     <img src="/imgs/carousel-2.jpg" alt="Carousel Image 2">
+                    <span class="carousel-location">Penang - Malaysia</span>
                 </div>
                 <div class="carousel-slide" data-slide="3">
                     <img src="/imgs/carousel-3.JPG" alt="Carousel Image 3">
+                    <span class="carousel-location">Toronto - Canada</span>
                 </div>
                 <div class="carousel-slide" data-slide="4">
                     <img src="/imgs/carousel-4.JPG" alt="Carousel Image 4">
+                    <span class="carousel-location">New York - USA</span>
                 </div>
                 <div class="carousel-slide" data-slide="1">
                     <img src="/imgs/carousel-1.jpg" alt="Carousel Image 1">
+                    <span class="carousel-location">Kaohsiung - Taiwan</span>
                 </div>
             </div>
             <button class="carousel-nav prev" onclick="changeSlide(-1)">‹</button>
@@ -625,36 +706,36 @@ export class AppController {
         
         <div class="intro-card">
             <div class="container">
-            <p class="brand-description">
-                Welcome to Dadaberry, a small studio where photography meets gentle aesthetics.
-
-                I capture portraits, products and the beauty hidden in everyday moments, using light, color and emotion to tell a story.
-
-                I also work on simple graphic design such as posters, layouts and visual content that look clean, soft and pleasant to the eye.
-
-                This is where I keep moments worth remembering and turn visuals into something warm and meaningful.
-            </p>
-            
-            <div class="services">
-                <div class="service">
-                    <div class="service-icon">🎨</div>
-                    <h3>Creative Design</h3>
-                    <p>Bespoke visual identities and design solutions that tell your story</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-card-image">
+                        <img src="/imgs/photograpgy.JPG" alt="Photography">
+                        <h3 class="service-card-title">Photography</h3>
+                    </div>
+                    <div class="service-card-description">
+                        <p>I capture portraits, products and everyday beauty with a soft and natural style.</p>
+                        <p style="margin-top: 1rem;">Each photo is carefully composed, retouched and delivered ready for personal use, branding or social media.</p>
+                    </div>
                 </div>
-                <div class="service">
-                    <div class="service-icon">📸</div>
-                    <h3>Photography</h3>
-                    <p>Capturing moments and emotions through the lens of artistic vision</p>
+                <div class="service-card">
+                    <div class="service-card-image">
+                        <img src="/imgs/design.jpeg" alt="Visual Design">
+                        <h3 class="service-card-title">Visual Design</h3>
+                    </div>
+                    <div class="service-card-description">
+                        <p>I create clean, aesthetic visuals such as posters, social media graphics and simple branding materials.</p>
+                        <p style="margin-top: 1rem;">My focus is on clarity, balance and a gentle visual tone that feels pleasant and easy to read.</p>
+                    </div>
                 </div>
-                <div class="service">
-                    <div class="service-icon">🖼️</div>
-                    <h3>Digital Artworks</h3>
-                    <p>Original digital creations that push the boundaries of visual expression</p>
-                </div>
-                <div class="service">
-                    <div class="service-icon">✨</div>
-                    <h3>Creative Solutions</h3>
-                    <p>Innovative approaches to any creative challenge you can imagine</p>
+                <div class="service-card">
+                    <div class="service-card-image">
+                        <img src="/imgs/writing.JPG" alt="Article Writing & Page Layout">
+                        <h3 class="service-card-title">Article Writing<br>& Page Layout</h3>
+                    </div>
+                    <div class="service-card-description">
+                        <p>I write stories and format them into visually organized pages.</p>
+                        <p style="margin-top: 1rem;">From travel journals to product guides, I turn photos and text into clean, well-designed layouts that feel polished and enjoyable to read.</p>
+                    </div>
                 </div>
             </div>
             </div>
@@ -685,26 +766,26 @@ export class AppController {
                     <h3>A smooth and friendly creative experience</h3>
                     <p>From communication to retouching and final delivery, everything is handled with care so you can relax and enjoy the results.</p>
                 </div>
+                </div>
             </div>
-        </div>
         </div>
         
         <div class="gallery-card">
             <div class="container">
                 <h2 style="text-align: center; margin-bottom: 2rem; color: #986DB2; font-size: 2.5rem;">Our Creative Gallery</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="/imgs/IMG_5578.jpeg" alt="Creative Work 1">
-                        <div class="overlay">
-                            <h3>Moment of Serenity</h3>
-                            <p>Capturing tranquility in motion</p>
-                        </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/imgs/IMG_5578.jpeg" alt="Creative Work 1">
+                    <div class="overlay">
+                        <h3>Moment of Serenity</h3>
+                        <p>Capturing tranquility in motion</p>
                     </div>
-                    <div class="gallery-item">
-                        <img src="/imgs/IMG_8775.jpeg" alt="Creative Work 2">
-                        <div class="overlay">
-                            <h3>Playful Elegance</h3>
-                            <p>Where grace meets spontaneity</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="/imgs/IMG_8775.jpeg" alt="Creative Work 2">
+                    <div class="overlay">
+                        <h3>Playful Elegance</h3>
+                        <p>Where grace meets spontaneity</p>
                         </div>
                     </div>
                 </div>
@@ -795,7 +876,7 @@ export class AppController {
         }
         .services-hero-section {
             padding-top: 123px;
-            padding-bottom: 4rem;
+            padding-bottom: 0;
             min-height: 100vh;
             position: relative;
             background: white;
@@ -1435,7 +1516,7 @@ export class AppController {
             <nav class="nav-links">
                 <a href="/">Home</a>
                 <a href="/services">Services</a>
-                <a href="/#portfolio">Portfolio</a>
+                <a href="/portfolio">Portfolio</a>
                 <a href="/#contact">Contact Us</a>
             </nav>
         </div>
@@ -1749,7 +1830,7 @@ export class AppController {
             <nav class="nav-links">
                 <a href="/">Home</a>
                 <a href="/services">Services</a>
-                <a href="/#portfolio">Portfolio</a>
+                <a href="/portfolio">Portfolio</a>
                 <a href="/contact">Contact Us</a>
             </nav>
         </div>
@@ -1837,6 +1918,787 @@ export class AppController {
             document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
+</body>
+</html>
+    `);
+  }
+
+  @Get('portfolio')
+  getPortfolioPage(@Res() res: Response) {
+    res.send(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — DadaBerry</title>
+    <link rel="icon" type="image/png" href="/imgs/dadaberry- favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: white;
+            color: #2c3e50;
+            min-height: 100vh;
+            padding-top: 0;
+        }
+        .main-header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .header-line {
+            position: fixed;
+            top: 120px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #986DB2;
+            z-index: 999;
+        }
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-logo {
+            height: 100px;
+            width: auto;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #986DB2;
+        }
+        .portfolio-hero-section {
+            padding-top: 123px;
+            padding-bottom: 0;
+            position: relative;
+            background: white;
+        }
+        .portfolio-hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        .portfolio-hero-text {
+            flex: 1;
+        }
+        .portfolio-hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 4rem;
+        }
+        .portfolio-sidebar {
+            position: sticky;
+            top: 140px;
+            height: fit-content;
+        }
+        .category-section {
+            margin-bottom: 2rem;
+        }
+        .category-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #986DB2;
+        }
+        .subcategory-list {
+            list-style: none;
+        }
+        .subcategory-item {
+            margin-bottom: 0.5rem;
+        }
+        .subcategory-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        .subcategory-link:hover,
+        .subcategory-link.active {
+            color: #986DB2;
+            font-weight: 600;
+        }
+        .portfolio-gallery {
+            column-count: 3;
+            column-gap: 1rem;
+            width: 100%;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background: #000;
+            margin-bottom: 1rem;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            display: inline-block;
+            width: 100%;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .portfolio-gallery.article-layout-mode {
+            column-count: 1 !important;
+            column-gap: 0;
+            display: block;
+        }
+        .portfolio-item[data-category="article-layout"] {
+            margin-bottom: 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .portfolio-item[data-category="article-layout"] img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .portfolio-gallery.product-sheet-mode {
+            column-count: 3 !important;
+            column-gap: 1rem;
+        }
+        /* Ensure first 3 product-sheet items (1-3.jpg) appear in first row */
+        .portfolio-item[data-category="product-sheet"]:nth-of-type(1),
+        .portfolio-item[data-category="product-sheet"]:nth-of-type(2),
+        .portfolio-item[data-category="product-sheet"]:nth-of-type(3) {
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
+            -webkit-column-break-inside: avoid !important;
+            column-break-inside: avoid !important;
+        }
+        .portfolio-item[data-category="product-sheet"] {
+            order: 0;
+        }
+        .portfolio-item[data-category="product-sheet"]:nth-child(1) {
+            order: 1;
+        }
+        .portfolio-item[data-category="product-sheet"]:nth-child(2) {
+            order: 2;
+        }
+        .portfolio-item[data-category="product-sheet"]:nth-child(3) {
+            order: 3;
+        }
+        @media (max-width: 968px) {
+            .portfolio-gallery.article-layout-mode {
+                column-count: 1 !important;
+                column-gap: 1rem;
+            }
+            .portfolio-gallery.product-sheet-mode {
+                column-count: 2 !important;
+            }
+        }
+        @media (max-width: 968px) {
+            .portfolio-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .portfolio-sidebar {
+                position: relative;
+                top: 0;
+            }
+            .portfolio-hero-title {
+                font-size: 4rem;
+            }
+            .portfolio-gallery {
+                column-count: 2;
+                column-gap: 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .portfolio-hero {
+                flex-direction: column;
+                padding: 2rem 1rem;
+            }
+            .portfolio-hero-title {
+                font-size: 3rem;
+                text-align: center;
+            }
+            .portfolio-container {
+                padding: 2rem 1rem;
+            }
+            .portfolio-gallery {
+                column-count: 1;
+                column-gap: 0;
+            }
+            .header-logo {
+                height: 50px;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .nav-links a {
+                font-size: 0.95rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .portfolio-hero-title {
+                font-size: 2.5rem;
+            }
+            .header-logo {
+                height: 40px;
+            }
+        }
+        .portfolio-cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #986DB2 0%, #7A5A8F 100%);
+            margin-top: 3rem;
+        }
+        .portfolio-cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .portfolio-cta-section p {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .portfolio-cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #986DB2;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+        .portfolio-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.5);
+        }
+        @media (max-width: 768px) {
+            .portfolio-cta-section {
+                padding: 3rem 1.5rem;
+            }
+            .portfolio-cta-section h2 {
+                font-size: 2rem;
+            }
+            .portfolio-cta-button {
+                padding: 1rem 2.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="/"><img src="/imgs/dadaberry-logo.png" alt="DadaBerry Logo" class="header-logo"></a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/portfolio">Portfolio</a>
+                <a href="/contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    <div class="header-line"></div>
+    
+    <section class="portfolio-hero-section">
+        <div class="portfolio-hero">
+            <div class="portfolio-hero-text">
+                <h1 class="portfolio-hero-title">Portfolio</h1>
+            </div>
+        </div>
+    </section>
+    
+    <div class="portfolio-container">
+        <aside class="portfolio-sidebar">
+            <div class="category-section">
+                <h2 class="category-title">Photography</h2>
+                <ul class="subcategory-list">
+                    <li class="subcategory-item">
+                        <a href="#" class="subcategory-link active" data-category="portrait">Portrait</a>
+                    </li>
+                    <li class="subcategory-item">
+                        <a href="#" class="subcategory-link" data-category="city">City</a>
+                    </li>
+                    <li class="subcategory-item">
+                        <a href="#" class="subcategory-link" data-category="nature">Nature</a>
+                    </li>
+                    <li class="subcategory-item">
+                        <a href="#" class="subcategory-link" data-category="event">Event</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="category-section">
+                <h2 class="category-title">Visual Design</h2>
+                <ul class="subcategory-list">
+                    <li class="subcategory-item">
+                        <a href="#" class="subcategory-link" data-category="ig-stories">IG Stories</a>
+                    </li>
+                    <li class="subcategory-item">
+                        <a href="#" class="subcategory-link" data-category="product-sheet">Product Sheet</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="category-section">
+                <h2 class="category-title">Article Writing<br>& Page Layout</h2>
+                <ul class="subcategory-list">
+                    <li class="subcategory-item">
+                        <a href="#" class="subcategory-link" data-category="article-layout">Work Reference</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        
+        <main class="portfolio-gallery" id="portfolioGallery">
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-1.jpg" alt="Portrait 1">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-2.JPEG" alt="Portrait 2">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-3.JPG" alt="Portrait 3">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-4.jpg" alt="Portrait 4">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-5.jpg" alt="Portrait 5">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-6.JPG" alt="Portrait 6">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-7.JPG" alt="Portrait 7">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-9.JPG" alt="Portrait 8">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/p-10.JPG" alt="Portrait 9">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/000037770001.jpg" alt="Portrait 10">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/000037770002.jpg" alt="Portrait 11">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/000037770003.jpg" alt="Portrait 12">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/3244-10.jpeg" alt="Portrait 13">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/5E6F0904-E47A-4C66-8E18-5BC689D086DA-32CF6BE5-AC04-4D87-9EB1-89FDAC56D46D.JPG" alt="Portrait 14">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/DSC01740.JPG" alt="Portrait 15">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/R0000307_VSCO.jpg" alt="Portrait 16">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/R0000536.JPG" alt="Portrait 17">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/R0000804.JPG" alt="Portrait 18">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/R0001483pd.jpg" alt="Portrait 19">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/DSC06263.JPG" alt="Portrait 20">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/3922-13.JPEG" alt="Portrait 21">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/R0001918pd.jpg" alt="Portrait 22">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/R0000580.JPG" alt="Portrait 23">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/R0000694.JPG" alt="Portrait 24">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/IMG_2805.JPG" alt="Portrait 25">
+            </div>
+            <div class="portfolio-item" data-category="portrait">
+                <img src="/imgs/portrait/IMG_7334.JPG" alt="Portrait 26">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-1.jpg" alt="IG Stories 1">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-2.jpg" alt="IG Stories 2">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-3.jpg" alt="IG Stories 3">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-4.jpg" alt="IG Stories 4">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-5.jpg" alt="IG Stories 5">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-6.png" alt="IG Stories 6">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-7.png" alt="IG Stories 7">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-8.png" alt="IG Stories 8">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/i-9.png" alt="IG Stories 9">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/story_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F%201.jpg" alt="IG Stories 10">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/story_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F%201%20%E8%A4%87%E6%9C%AC.jpg" alt="IG Stories 11">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/story_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F%201%20%E8%A4%87%E6%9C%AC%202.jpg" alt="IG Stories 12">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/story_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F%201%20%E8%A4%87%E6%9C%AC%203.jpg" alt="IG Stories 13">
+            </div>
+            <div class="portfolio-item" data-category="ig-stories" style="display: none;">
+                <img src="/imgs/ig%20stories/story_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F%201%20%E8%A4%87%E6%9C%AC%204.jpg" alt="IG Stories 14">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/000027540033.JPEG" alt="Street 1">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/000033950007.JPEG" alt="Street 2">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/000033950018.jpg" alt="Street 3">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/000033950031.JPEG" alt="Street 4">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/000049370006.JPEG" alt="Street 5">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/0896-10.JPEG" alt="Street 6">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/DSC01559_VSCO.jpg" alt="Street 7">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/DSC01563_VSCO.jpg" alt="Street 8">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/DSC02826_VSCO.jpg" alt="Street 9">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/DSC02835_VSCO.jpg" alt="Street 10">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/DSC02895_VSCO.jpg" alt="Street 11">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/FullSizeRender_VSCO (1).jpg" alt="Street 12">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/FullSizeRender_VSCO 2.jpg" alt="Street 13">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/IMG_3895.JPG" alt="Street 14">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/IMG_8163.JPG" alt="Street 15">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/IMG_8186.JPG" alt="Street 16">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0000913.JPG" alt="Street 17">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0000958.JPG" alt="Street 18">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001256.JPG" alt="Street 20">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001335_VSCO.jpg" alt="Street 21">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001365_VSCO.jpg" alt="Street 22">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001371_VSCO.jpg" alt="Street 23">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001404.JPG" alt="Street 24">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001409.JPG" alt="Street 25">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001411.JPG" alt="Street 26">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001412.JPG" alt="Street 27">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001413.JPG" alt="Street 28">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/R0001846.jpg" alt="Street 29">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/0896-01.JPEG" alt="Street 30">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/0897-10.JPEG" alt="Street 31">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/5AE16DD0-0BB1-464A-AD60-6256BA72B93C.jpg" alt="Street 32">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/7D5CBBF8-9D35-4F8C-ABCC-42145BB44B22.jpg" alt="Street 33">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/DSC00019.JPG" alt="Street 34">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/DSC00352.JPG" alt="Street 35">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/DSC00369.JPG" alt="Street 36">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/city1.jpg" alt="City 37">
+            </div>
+            <div class="portfolio-item" data-category="city" style="display: none;">
+                <img src="/imgs/city/city2.jpg" alt="City 38">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/65E2290A-CEA3-4FB1-89C4-07C874F8962E.jpg" alt="Nature 1">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/695244BB-959F-47FF-A735-18940E771BEE.jpg" alt="Nature 2">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/E73F83F8-2C19-4B5C-85E2-6BEB7577E5BF.jpg" alt="Nature 3">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/IMG_0408.jpg" alt="Nature 4">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/R0000596.JPG" alt="Nature 5">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/R0000723.JPG" alt="Nature 6">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/00E83DBE-4C0C-495E-9B43-5EF23D45B825.jpg" alt="Nature 7">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/42F30962-E80B-4C91-83B8-B4B47023D051.jpg" alt="Nature 8">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC00468.JPG" alt="Nature 9">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC00491.JPG" alt="Nature 10">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC01407_VSCO.jpg" alt="Nature 11">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC01454_VSCO.jpg" alt="Nature 12">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC01663_VSCO.jpg" alt="Nature 13">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC01669.JPG" alt="Nature 14">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC01899.JPG" alt="Nature 15">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC02374.JPG" alt="Nature 16">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC02495_VSCO.jpg" alt="Nature 17">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC03134.jpg" alt="Nature 18">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/DSC06142.JPG" alt="Nature 19">
+            </div>
+            <div class="portfolio-item" data-category="nature" style="display: none;">
+                <img src="/imgs/nature/FullSizeRender_VSCO.JPG" alt="Nature 20">
+            </div>
+            <div class="portfolio-item" data-category="event" style="display: none;">
+                <img src="/imgs/event/000037770011.JPEG" alt="Event 1">
+            </div>
+            <div class="portfolio-item" data-category="event" style="display: none;">
+                <img src="/imgs/event/fxn%202024-03-03%20162917.901.jpg" alt="Event 2">
+            </div>
+            <div class="portfolio-item" data-category="event" style="display: none;">
+                <img src="/imgs/event/p-8.JPEG" alt="Event 3">
+            </div>
+            <div class="portfolio-item" data-category="article-layout" style="display: none;">
+                <img src="/imgs/Work%20reference%201.jpg" alt="Article Writing & Page Layout 1">
+            </div>
+            <div class="portfolio-item" data-category="article-layout" style="display: none;">
+                <img src="/imgs/Work%20reference%202.jpg" alt="Article Writing & Page Layout 2">
+            </div>
+            <div class="portfolio-item" data-category="product-sheet" style="display: none;">
+                <img src="/imgs/products/1.jpg" alt="Product Sheet 1">
+            </div>
+            <div class="portfolio-item" data-category="product-sheet" style="display: none;">
+                <img src="/imgs/products/2.jpg" alt="Product Sheet 2">
+            </div>
+            <div class="portfolio-item" data-category="product-sheet" style="display: none;">
+                <img src="/imgs/products/3.jpg" alt="Product Sheet 3">
+            </div>
+            <div class="portfolio-item" data-category="product-sheet" style="display: none;">
+                <img src="/imgs/products/CN03_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F%201.jpg" alt="Product Sheet 4">
+            </div>
+            <div class="portfolio-item" data-category="product-sheet" style="display: none;">
+                <img src="/imgs/products/mb20220525%E7%B0%A1%E4%BB%8B-01.jpg" alt="Product Sheet 5">
+            </div>
+            <div class="portfolio-item" data-category="product-sheet" style="display: none;">
+                <img src="/imgs/products/Sun%20Protect%20Face%20SPF%2050%20(6).jpg" alt="Product Sheet 6">
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const gallery = document.getElementById('portfolioGallery');
+            
+            // Collect visible items
+            const visibleItems = [];
+            items.forEach(item => {
+                if (item.getAttribute('data-category') === category) {
+                    item.style.display = 'inline-block';
+                    visibleItems.push(item);
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Note: Product sheet items will display in their HTML order
+            // The first 3 items (1-3.jpg) are already in correct order in HTML
+            
+            // Special layout for article-layout category
+            if (category === 'article-layout') {
+                gallery.classList.add('article-layout-mode');
+                gallery.classList.remove('product-sheet-mode');
+            } else if (category === 'product-sheet') {
+                gallery.classList.add('product-sheet-mode');
+                gallery.classList.remove('article-layout-mode');
+            } else {
+                gallery.classList.remove('article-layout-mode');
+                gallery.classList.remove('product-sheet-mode');
+            }
+        }
+        
+        // Initialize event listeners
+        function initPortfolio() {
+            document.querySelectorAll('.subcategory-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const category = this.getAttribute('data-category');
+                    
+                    if (!category) {
+                        console.error('No category found for link');
+                        return;
+                    }
+                    
+                    document.querySelectorAll('.subcategory-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    filterPortfolio(category);
+                });
+            });
+            
+            // Initialize with portrait category
+            filterPortfolio('portrait');
+        }
+        
+        // Run when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPortfolio);
+        } else {
+            initPortfolio();
+        }
+    </script>
+    
+    <div class="portfolio-cta-section">
+        <h2>Ready to Create Something Amazing?</h2>
+        <p>
+            Let's bring your creative vision to life. Get in touch and let's start your next project.
+        </p>
+        <a href="/contact" class="portfolio-cta-button">Start Your Project</a>
+    </div>
 </body>
 </html>
     `);
