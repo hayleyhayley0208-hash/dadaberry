@@ -711,11 +711,11 @@ export class AppController {
                     <div class="service-card-image">
                         <img src="/imgs/photograpgy.JPG" alt="Photography">
                         <h3 class="service-card-title">Photography</h3>
-                    </div>
+                </div>
                     <div class="service-card-description">
                         <p>I capture portraits, products and everyday beauty with a soft and natural style.</p>
                         <p style="margin-top: 1rem;">Each photo is carefully composed, retouched and delivered ready for personal use, branding or social media.</p>
-                    </div>
+                </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-image">
@@ -737,7 +737,7 @@ export class AppController {
                         <p style="margin-top: 1rem;">From travel journals to product guides, I turn photos and text into clean, well-designed layouts that feel polished and enjoyable to read.</p>
                     </div>
                 </div>
-            </div>
+                </div>
             </div>
         </div>
         
@@ -925,8 +925,17 @@ export class AppController {
             font-size: 5rem;
             font-weight: 700;
             color: white;
-            margin-bottom: 0;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
+        }
+        .portrait-description {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: white;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .portrait-images {
             display: flex;
@@ -985,8 +994,17 @@ export class AppController {
             font-size: 5rem;
             font-weight: 700;
             color: #000000;
-            margin-bottom: 0;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
+        }
+        .retouching-description {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #444;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .before-after-container {
             position: relative;
@@ -1122,8 +1140,16 @@ export class AppController {
             font-size: 5rem;
             font-weight: 700;
             color: #000000;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
+        }
+        .film-description {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #444;
+            line-height: 1.8;
+            max-width: 600px;
         }
         .film-images {
             display: flex;
@@ -1181,8 +1207,17 @@ export class AppController {
             font-size: 5rem;
             font-weight: 700;
             color: #000000;
-            margin-bottom: 0;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
+        }
+        .product-description {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #444;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .product-images {
             display: flex;
@@ -1247,8 +1282,16 @@ export class AppController {
             font-size: 5rem;
             font-weight: 700;
             color: #000000;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
+        }
+        .article-description {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #444;
+            line-height: 1.8;
+            max-width: 600px;
         }
         .article-images {
             display: flex;
@@ -1534,6 +1577,7 @@ export class AppController {
             <div class="portrait-content">
                 <div class="portrait-text">
                     <h2 class="portrait-title">Portrait Photography</h2>
+                    <p class="portrait-description">A professional portrait session where DadaBerry captures people in a soft, natural, and beautiful style. The focus is on creating warm, authentic photos that reveal personality and emotion — perfect for personal use, branding, or social media.</p>
                 </div>
                 <div class="portrait-images">
                     <img src="/imgs/id-1.JPG" alt="Portrait Photography 1">
@@ -1547,6 +1591,7 @@ export class AppController {
             <div class="retouching-content">
                 <div class="retouching-text">
                     <h2 class="retouching-title">Photo Retouching & Finishing</h2>
+                    <p class="retouching-description">This service takes your existing photos and enhances them through careful editing. It includes color correction, smoothing, lighting adjustments, and other finishing touches so your images look polished and ready to share or use.</p>
                 </div>
                 <div class="before-after-container" id="beforeAfterContainer">
                     <div class="before-after-wrapper">
@@ -1564,6 +1609,7 @@ export class AppController {
             <div class="film-content">
                 <div class="film-text">
                     <h2 class="film-title">35MM FILM</h2>
+                    <p class="film-description">DadaBerry offers traditional 35mm film photography, capturing moments with the timeless aesthetic and grain of real film. This is great if you want photos that feel classic, artistic, and uniquely textured.</p>
                 </div>
                 <div class="film-images">
                     <img src="/imgs/35mm-1.jpg" alt="35mm Film 1">
@@ -1577,6 +1623,7 @@ export class AppController {
             <div class="product-content">
                 <div class="product-text">
                     <h2 class="product-title">Product Photography & Visual Design</h2>
+                    <p class="product-description">This combines product photos with clean visual design. It's ideal for showcasing products for online stores, catalogs, or marketing. Photos are taken with attention to detail and styled for visual appeal, often paired with simple design elements to enhance presentation.</p>
                 </div>
                 <div class="product-images">
                     <img src="/imgs/Product-1.JPG" alt="Product Photography 1">
@@ -1590,6 +1637,7 @@ export class AppController {
             <div class="article-content">
                 <div class="article-text">
                     <h2 class="article-title">Article Writing<br>& Page Layout</h2>
+                    <p class="article-description">More than just taking photos, this service includes writing articles and turning text + images into a professionally formatted layout. Whether it's travel stories, product guides, or personal essays, DadaBerry creates visually organized pages that feel polished and enjoyable to read.</p>
                 </div>
                 <div class="article-images">
                     <img src="/imgs/content-1.jpg" alt="Article Writing 1">
