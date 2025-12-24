@@ -2396,16 +2396,16 @@ export class AppController {
                 <img src="/imgs/ig%20stories/i-5.jpg" alt="IG Stories 5">
             </div>
             <div class="portfolio-item" data-category="ig-stories" style="display: none;">
-                <img src="/imgs/ig%20stories/i-6.png" alt="IG Stories 6">
+                <img src="/imgs/ig%20stories/i-6.jpg" alt="IG Stories 6">
             </div>
             <div class="portfolio-item" data-category="ig-stories" style="display: none;">
-                <img src="/imgs/ig%20stories/i-7.png" alt="IG Stories 7">
+                <img src="/imgs/ig%20stories/i-7.jpg" alt="IG Stories 7">
             </div>
             <div class="portfolio-item" data-category="ig-stories" style="display: none;">
-                <img src="/imgs/ig%20stories/i-8.png" alt="IG Stories 8">
+                <img src="/imgs/ig%20stories/i-8.jpg" alt="IG Stories 8">
             </div>
             <div class="portfolio-item" data-category="ig-stories" style="display: none;">
-                <img src="/imgs/ig%20stories/i-9.png" alt="IG Stories 9">
+                <img src="/imgs/ig%20stories/i-9.jpg" alt="IG Stories 9">
             </div>
             <div class="portfolio-item" data-category="ig-stories" style="display: none;">
                 <img src="/imgs/ig%20stories/story_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F%201.jpg" alt="IG Stories 10">
