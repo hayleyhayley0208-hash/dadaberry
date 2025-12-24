@@ -448,13 +448,28 @@ export class AppController {
             .container { padding: 1rem; }
             h1 { font-size: 2rem; }
             .tagline { font-size: 1rem; }
+            .main-header { padding: 0.8rem 0; }
+            .header-container { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
             .header-logo { height: 50px; }
-            .nav-links { gap: 0.5rem; }
-            .nav-links a { font-size: 0.8rem; padding: 0.3rem 0.4rem; }
+            .nav-links { 
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                gap: 0.3rem;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(152, 109, 178, 0.2);
+            }
+            .nav-links a { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
+            .carousel-section { padding-top: 140px; }
             .carousel-container { height: 50vh; }
-            .carousel-section { height: 50vh; }
+            .carousel-section { height: calc(50vh + 140px); }
             .carousel-nav { width: 40px; height: 40px; font-size: 1.2rem; }
-            .slogan-section { margin-top: 50vh; padding: 2rem 1rem; }
+            .slogan-section { margin-top: calc(50vh + 140px); padding: 2rem 1rem; }
             .slogan-text { font-size: 1.8rem; line-height: 1.2; }
             .dada-image-section { height: 300px; }
             .carousel-nav.prev { left: 8px; }
@@ -1611,6 +1626,25 @@ export class AppController {
             .services-carousel-nav.next { right: 10px; }
         }
         @media (max-width: 480px) {
+            .main-header { padding: 0.8rem 0; }
+            .header-container { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            .header-logo { height: 50px; }
+            .nav-links { 
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                gap: 0.3rem;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(152, 109, 178, 0.2);
+            }
+            .nav-links a { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
+            .header-line { top: 140px; }
+            .services-hero-section { padding-top: 140px; }
             .services-hero-title { font-size: 2.5rem; }
             .portrait-title, .retouching-title, .film-title, .product-title, .article-title { font-size: 2.5rem; }
             .portrait-description, .retouching-description, .film-description, .product-description, .article-description { font-size: 1rem; }
@@ -2082,8 +2116,25 @@ export class AppController {
             .nav-links a { font-size: 0.95rem; }
         }
         @media (max-width: 480px) {
+            .main-header { padding: 0.8rem 0; }
+            .header-container { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            .header-logo { height: 50px; }
+            .nav-links { 
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                gap: 0.3rem;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(152, 109, 178, 0.2);
+            }
+            .nav-links a { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
             .contact-hero-title { font-size: 2.5rem; }
-            .contact-hero-section { padding-top: 120px; }
+            .contact-hero-section { padding-top: 140px; }
             .contact-container { padding: 4rem 0; }
             .contact-content { gap: 2.5rem; padding: 0 1rem; }
             .contact-form { padding: 2rem 1.2rem; }
@@ -2500,8 +2551,25 @@ export class AppController {
             }
         }
         @media (max-width: 480px) {
+            .main-header { padding: 0.8rem 0; }
+            .header-container { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            .header-logo { height: 50px; }
+            .nav-links { 
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                gap: 0.3rem;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(152, 109, 178, 0.2);
+            }
+            .nav-links a { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
             .portfolio-hero-title { font-size: 2.5rem; }
-            .portfolio-hero-section { padding-top: 120px; }
+            .portfolio-hero-section { padding-top: 140px; }
             .portfolio-container { padding: 3rem 1rem; }
             .portfolio-sidebar { padding: 1.2rem; width: 100%; margin-bottom: 2rem; }
             .sidebar-category { margin-bottom: 1.5rem; }
