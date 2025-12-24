@@ -1890,7 +1890,7 @@ export class AppController {
                             <div class="pricing-details">• Basic styling and composition</div>
                             <div class="pricing-details">• Clean visual layout (background, spacing, simple graphic elements)</div>
                             <div class="pricing-details">• Images prepared for web or social media use</div>
-                            <div class="pricing-price" style="margin-top: 1rem;">Starting from $39.9 per product</div>
+                            <div class="pricing-price" style="margin-top: 1rem;">Starting from $19.9 per product</div>
                             <div class="pricing-note">Final pricing depends on quantity and visual complexity.</div>
                         </div>
                     </div>
