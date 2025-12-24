@@ -2133,6 +2133,7 @@ export class AppController {
                 border-top: 1px solid rgba(152, 109, 178, 0.2);
             }
             .nav-links a { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
+            .header-line { display: none; }
             .contact-hero-title { font-size: 2.5rem; }
             .contact-hero-section { padding-top: 140px; }
             .contact-container { padding: 4rem 0; }
@@ -2568,6 +2569,7 @@ export class AppController {
                 border-top: 1px solid rgba(152, 109, 178, 0.2);
             }
             .nav-links a { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
+            .header-line { display: none; }
             .portfolio-hero-title { font-size: 2.5rem; }
             .portfolio-hero-section { padding-top: 140px; }
             .portfolio-container { padding: 3rem 1rem; }
