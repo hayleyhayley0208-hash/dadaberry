@@ -1691,9 +1691,15 @@ export class AppController {
                     
                     <div class="pricing-section">
                         <div class="pricing-item">
-                            <div class="pricing-title">Passport Photograph</div>
-                            <div class="pricing-price">$12.99</div>
+                            <div class="pricing-title">Headshot Photography</div>
+                            <div class="pricing-price">$9.99</div>
                             <div class="pricing-note">Retouching will be adjusted based on reasonable client requests.</div>
+                        </div>
+                        
+                        <div class="pricing-item">
+                            <div class="pricing-title">Passport Photograph</div>
+                            <div class="pricing-price">$15.99</div>
+                            <div class="pricing-note">Passport photos provided in both digital and printed formats, suitable for official documents.</div>
                         </div>
                         
                         <div class="pricing-item">
