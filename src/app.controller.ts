@@ -935,7 +935,51 @@ export class AppController {
             color: white;
             line-height: 1.8;
             max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+        .pricing-section {
+            font-family: 'Poppins', sans-serif;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .pricing-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .pricing-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .pricing-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 0.8rem;
+        }
+        .pricing-details {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-left: 1rem;
+        }
+        .pricing-note {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
         }
         .portrait-images {
             display: flex;
@@ -973,6 +1017,18 @@ export class AppController {
             .portrait-title {
                 font-size: 3rem;
             }
+            .pricing-section, .pricing-section-light {
+                padding: 1.5rem;
+            }
+            .pricing-title {
+                font-size: 1.1rem;
+            }
+            .pricing-price {
+                font-size: 1.3rem;
+            }
+            .pricing-details {
+                font-size: 0.95rem;
+            }
         }
         .retouching-section {
             background: #f5f5f5;
@@ -1004,7 +1060,51 @@ export class AppController {
             color: #444;
             line-height: 1.8;
             max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+        .pricing-section-light {
+            font-family: 'Poppins', sans-serif;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 2rem;
+            background: rgba(152, 109, 178, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(152, 109, 178, 0.2);
+        }
+        .pricing-section-light .pricing-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(152, 109, 178, 0.2);
+        }
+        .pricing-section-light .pricing-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .pricing-section-light .pricing-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-section-light .pricing-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #986DB2;
+            margin-bottom: 0.8rem;
+        }
+        .pricing-section-light .pricing-details {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #555;
+            line-height: 1.6;
+            margin-left: 1rem;
+        }
+        .pricing-section-light .pricing-note {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #666;
+            margin-top: 0.5rem;
         }
         .before-after-container {
             position: relative;
@@ -1150,6 +1250,11 @@ export class AppController {
             color: #444;
             line-height: 1.8;
             max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .film-text .pricing-section-light {
+            max-width: 600px;
+            margin: 0;
         }
         .film-images {
             display: flex;
@@ -1292,6 +1397,11 @@ export class AppController {
             color: #444;
             line-height: 1.8;
             max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .article-text .pricing-section-light {
+            max-width: 600px;
+            margin: 0;
         }
         .article-images {
             display: flex;
@@ -1578,6 +1688,21 @@ export class AppController {
                 <div class="portrait-text">
                     <h2 class="portrait-title">Portrait Photography</h2>
                     <p class="portrait-description">A professional portrait session where DadaBerry captures people in a soft, natural, and beautiful style. The focus is on creating warm, authentic photos that reveal personality and emotion — perfect for personal use, branding, or social media.</p>
+                    
+                    <div class="pricing-section">
+                        <div class="pricing-item">
+                            <div class="pricing-title">Passport Photograph</div>
+                            <div class="pricing-price">$12.99</div>
+                            <div class="pricing-note">Retouching will be adjusted based on reasonable client requests.</div>
+                        </div>
+                        
+                        <div class="pricing-item">
+                            <div class="pricing-title">Lifestyle Photography</div>
+                            <div class="pricing-price">$39.99/hr</div>
+                            <div class="pricing-details">• You'll receive all original photos, along with 10 carefully retouched images.</div>
+                            <div class="pricing-details">• Additional retouched images are available at $2 per photo.</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="portrait-images">
                     <img src="/imgs/id-1.JPG" alt="Portrait Photography 1">
@@ -1592,6 +1717,18 @@ export class AppController {
                 <div class="retouching-text">
                     <h2 class="retouching-title">Photo Retouching & Finishing</h2>
                     <p class="retouching-description">This service takes your existing photos and enhances them through careful editing. It includes color correction, smoothing, lighting adjustments, and other finishing touches so your images look polished and ready to share or use.</p>
+                    
+                    <div class="pricing-section-light">
+                        <div class="pricing-item">
+                            <div class="pricing-title">Sample Retouch</div>
+                            <div class="pricing-price">$1/per photo (max 2)</div>
+                        </div>
+                        
+                        <div class="pricing-item">
+                            <div class="pricing-title">Full Retouching</div>
+                            <div class="pricing-price">$5/per photo</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="before-after-container" id="beforeAfterContainer">
                     <div class="before-after-wrapper">
@@ -1610,6 +1747,20 @@ export class AppController {
                 <div class="film-text">
                     <h2 class="film-title">35MM FILM</h2>
                     <p class="film-description">DadaBerry offers traditional 35mm film photography, capturing moments with the timeless aesthetic and grain of real film. This is great if you want photos that feel classic, artistic, and uniquely textured.</p>
+                    
+                    <div class="pricing-section-light">
+                        <div class="pricing-item">
+                            <div class="pricing-title">Digital Copy</div>
+                            <div class="pricing-price">$5 per photo</div>
+                            <div class="pricing-note">Digital copy only</div>
+                        </div>
+                        
+                        <div class="pricing-item">
+                            <div class="pricing-title">Film Development</div>
+                            <div class="pricing-price">+$2 per photo</div>
+                            <div class="pricing-note">Available at an additional cost</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="film-images">
                     <img src="/imgs/35mm-1.jpg" alt="35mm Film 1">
@@ -1624,6 +1775,18 @@ export class AppController {
                 <div class="product-text">
                     <h2 class="product-title">Product Photography & Visual Design</h2>
                     <p class="product-description">This combines product photos with clean visual design. It's ideal for showcasing products for online stores, catalogs, or marketing. Photos are taken with attention to detail and styled for visual appeal, often paired with simple design elements to enhance presentation.</p>
+                    
+                    <div class="pricing-section-light">
+                        <div class="pricing-item">
+                            <div class="pricing-title">What's Included:</div>
+                            <div class="pricing-details">• Product photography</div>
+                            <div class="pricing-details">• Basic styling and composition</div>
+                            <div class="pricing-details">• Clean visual layout (background, spacing, simple graphic elements)</div>
+                            <div class="pricing-details">• Images prepared for web or social media use</div>
+                            <div class="pricing-price" style="margin-top: 1rem;">Starting from $39.9 per product</div>
+                            <div class="pricing-note">Final pricing depends on quantity and visual complexity.</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="product-images">
                     <img src="/imgs/Product-1.JPG" alt="Product Photography 1">
@@ -1638,6 +1801,19 @@ export class AppController {
                 <div class="article-text">
                     <h2 class="article-title">Article Writing<br>& Page Layout</h2>
                     <p class="article-description">More than just taking photos, this service includes writing articles and turning text + images into a professionally formatted layout. Whether it's travel stories, product guides, or personal essays, DadaBerry creates visually organized pages that feel polished and enjoyable to read.</p>
+                    
+                    <div class="pricing-section-light">
+                        <div class="pricing-item">
+                            <div class="pricing-title">What's Included:</div>
+                            <div class="pricing-details">• Original article writing</div>
+                            <div class="pricing-details">• Basic content editing and refinement</div>
+                            <div class="pricing-details">• Clean page layout and spacing</div>
+                            <div class="pricing-details">• Image and text alignment for digital reading</div>
+                            <div class="pricing-details">• Final page prepared for web or PDF use</div>
+                            <div class="pricing-price" style="margin-top: 1rem;">Starting from $49.9 per article</div>
+                            <div class="pricing-note">Final pricing depends on length and layout complexity.</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="article-images">
                     <img src="/imgs/content-1.jpg" alt="Article Writing 1">
