@@ -445,35 +445,50 @@ export class AppController {
             .what-you-get-item p { font-size: 1rem; }
         }
         @media (max-width: 480px) {
-            .container { padding: 0.75rem; }
-            h1 { font-size: 1.75rem; }
+            .container { padding: 1rem; }
+            h1 { font-size: 2rem; }
             .tagline { font-size: 1rem; }
-            .header-logo { height: 40px; }
-            .nav-links { gap: 0.75rem; }
-            .nav-links a { font-size: 0.85rem; padding: 0.4rem; }
-            .carousel-container { height: 40vh; }
-            .carousel-section { height: 40vh; }
-            .carousel-nav { width: 35px; height: 35px; font-size: 1rem; }
-            .slogan-section { margin-top: 40vh; padding: 1.5rem 1rem; }
-            .slogan-text { font-size: 2.4rem; line-height: 1.1; }
+            .header-logo { height: 50px; }
+            .nav-links { gap: 0.5rem; }
+            .nav-links a { font-size: 0.8rem; padding: 0.3rem 0.4rem; }
+            .carousel-container { height: 50vh; }
+            .carousel-section { height: 50vh; }
+            .carousel-nav { width: 40px; height: 40px; font-size: 1.2rem; }
+            .slogan-section { margin-top: 50vh; padding: 2rem 1rem; }
+            .slogan-text { font-size: 1.8rem; line-height: 1.2; }
             .dada-image-section { height: 300px; }
-            .carousel-nav.prev { left: 5px; }
-            .carousel-nav.next { right: 5px; }
-            .carousel-dot { width: 8px; height: 8px; }
+            .carousel-nav.prev { left: 8px; }
+            .carousel-nav.next { right: 8px; }
+            .carousel-dot { width: 9px; height: 9px; }
+            .carousel-location { font-size: 0.85rem; bottom: 1rem; right: 1rem; }
             .card { padding: 1.5rem 1rem; }
+            .intro-card { padding: 2rem 1rem; }
+            .intro-card-services { gap: 1.2rem; }
+            .intro-service-item { min-width: 100%; max-width: 100%; }
+            .intro-service-image-container { height: 200px; }
+            .image-overlay h3 { font-size: 1.5rem; }
+            .intro-service-description { padding: 1.2rem; }
+            .intro-service-description p { font-size: 0.9rem; }
             .brand-description { font-size: 0.95rem; }
             .service { padding: 1.25rem; }
             .service-icon { font-size: 2.5rem; }
             .service h3 { font-size: 1.2rem; }
-            .image-with-text { padding: 1rem; }
-            .image-with-text img { height: 250px; }
-            .image-description { padding: 1rem; }
+            .image-section h2 { font-size: 1.75rem; margin-bottom: 1.5rem; }
+            .image-with-text { padding: 0; margin-bottom: 1.5rem; }
+            .image-with-text img { height: auto; max-height: 280px; }
+            .image-description { padding: 1rem 0; }
             .image-description h3 { font-size: 1.3rem; }
             .image-description p { font-size: 0.95rem; }
-            .gallery-item img { height: 250px; }
-            .cta-section { padding: 2rem 1rem; }
-            .cta-section h2 { font-size: 1.75rem; }
-            .cta-button { padding: 0.9rem 2rem; font-size: 0.95rem; }
+            .gallery-card h2 { font-size: 1.75rem; }
+            .gallery-grid { gap: 1.2rem; }
+            .gallery-item { height: 300px; }
+            .gallery-item img { height: 300px; }
+            .overlay h3 { font-size: 1.3rem; }
+            .overlay p { font-size: 0.95rem; }
+            .cta-section { padding: 2.5rem 1rem; }
+            .cta-section h2 { font-size: 1.8rem; }
+            .cta-section p { font-size: 1rem; }
+            .cta-button { padding: 1rem 2rem; font-size: 1rem; }
             .hero-section { margin-bottom: 1.5rem; }
             .hero-image { max-height: 300px; }
             .what-you-get-section { padding: 2rem 1rem; }
@@ -1595,6 +1610,26 @@ export class AppController {
             .services-carousel-nav.prev { left: 10px; }
             .services-carousel-nav.next { right: 10px; }
         }
+        @media (max-width: 480px) {
+            .services-hero-title { font-size: 2.5rem; }
+            .portrait-title, .retouching-title, .film-title, .product-title, .article-title { font-size: 2.5rem; }
+            .portrait-description, .retouching-description, .film-description, .product-description, .article-description { font-size: 1rem; }
+            .portrait-section, .retouching-section, .film-section, .product-section, .article-section { padding: 4rem 0; }
+            .portrait-content, .retouching-content, .film-content, .product-content, .article-content { padding: 0 1rem; }
+            .portrait-images, .product-images { gap: 1.5rem; }
+            .film-images, .article-images { gap: 1.2rem; }
+            .before-after-wrapper { padding-top: 65%; }
+            .before-after-labels { font-size: 0.95rem; padding: 0.4rem 0.8rem; }
+            .pricing-section, .pricing-section-light { padding: 1.2rem; margin-top: 1.5rem; }
+            .pricing-title { font-size: 1rem; }
+            .pricing-price { font-size: 1.2rem; }
+            .pricing-details { font-size: 0.9rem; margin-left: 0.8rem; }
+            .pricing-note { font-size: 0.85rem; }
+            .services-cta-section { padding: 2.5rem 1rem; }
+            .services-cta-section h2 { font-size: 1.8rem; }
+            .services-cta-section p { font-size: 1rem; }
+            .services-cta-button { padding: 1rem 2rem; font-size: 1rem; }
+        }
     </style>
     <script>
         function initBeforeAfter() {
@@ -2048,8 +2083,18 @@ export class AppController {
         }
         @media (max-width: 480px) {
             .contact-hero-title { font-size: 2.5rem; }
-            .contact-form { padding: 1.5rem 1rem; }
-            .header-logo { height: 40px; }
+            .contact-hero-section { padding-top: 120px; }
+            .contact-container { padding: 4rem 0; }
+            .contact-content { gap: 2.5rem; padding: 0 1rem; }
+            .contact-form { padding: 2rem 1.2rem; }
+            .form-group { margin-bottom: 1.5rem; }
+            .form-group label { font-size: 0.95rem; }
+            .form-group input, .form-group textarea { padding: 0.9rem; font-size: 0.95rem; }
+            .form-group textarea { min-height: 120px; }
+            .submit-button { padding: 1.1rem; font-size: 1rem; }
+            .contact-form-text { font-size: 1rem; }
+            .header-logo { height: 50px; }
+            .nav-links a { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -2455,12 +2500,21 @@ export class AppController {
             }
         }
         @media (max-width: 480px) {
-            .portfolio-hero-title {
-                font-size: 2.5rem;
-            }
-            .header-logo {
-                height: 40px;
-            }
+            .portfolio-hero-title { font-size: 2.5rem; }
+            .portfolio-hero-section { padding-top: 120px; }
+            .portfolio-container { padding: 3rem 1rem; }
+            .portfolio-sidebar { padding: 1.2rem; width: 100%; margin-bottom: 2rem; }
+            .sidebar-category { margin-bottom: 1.5rem; }
+            .category-name { font-size: 1.1rem; padding: 0.7rem 1rem; }
+            .subcategory-list li a { font-size: 0.95rem; padding: 0.6rem 1rem; }
+            .portfolio-gallery { padding: 0; column-count: 1; column-gap: 0; }
+            .portfolio-gallery img { margin-bottom: 1rem; border-radius: 10px; }
+            .portfolio-cta-section { padding: 2.5rem 1rem; }
+            .portfolio-cta-section h2 { font-size: 1.8rem; }
+            .portfolio-cta-section p { font-size: 1rem; }
+            .portfolio-cta-button { padding: 1rem 2rem; font-size: 1rem; }
+            .header-logo { height: 50px; }
+            .nav-links a { font-size: 0.8rem; }
         }
         .portfolio-cta-section {
             text-align: center;
