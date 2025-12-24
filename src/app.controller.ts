@@ -1923,6 +1923,9 @@ export class AppController {
                 
                 <button type="submit" class="submit-button">Send Message</button>
                 <p class="contact-form-text">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <div id="form-error" style="display: none; margin-top: 1rem; padding: 1rem; background: #f8d7da; color: #721c24; border-radius: 8px;">
+                    <strong>Oops!</strong> <span id="error-message">Please fill in all required fields.</span>
+                </div>
                 <div id="form-success" style="display: none; margin-top: 1rem; padding: 1rem; background: #d4edda; color: #155724; border-radius: 8px;">
                     <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you soon.
                 </div>
@@ -1935,20 +1938,55 @@ export class AppController {
     </div>
     
     <script>
-        // Handle form submission with Netlify
+        // Handle form submission
         document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission for testing
+            
             const form = event.target;
             const submitButton = form.querySelector('button[type="submit"]');
             const successMessage = document.getElementById('form-success');
+            const errorMessage = document.getElementById('form-error');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Get form data
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+            
+            // Validate required fields
+            if (!data.name || !data.email || !data.message) {
+                errorMessage.style.display = 'block';
+                document.getElementById('error-message').textContent = 'Please fill in all required fields.';
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                console.log('❌ Form validation failed: missing required fields');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                errorMessage.style.display = 'block';
+                document.getElementById('error-message').textContent = 'Please enter a valid email address.';
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                console.log('❌ Form validation failed: invalid email format');
+                return;
+            }
+            
+            // Log form data to console for testing
+            console.log('📧 Form submitted with data:', data);
             
             // Show loading state
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
             
-            // Let Netlify handle the form submission
-            // The form will submit normally, and Netlify will process it
-            
-            // After a short delay, show success message (Netlify will redirect or we can show inline)
+            // Simulate sending (in production, this would send to Netlify or a backend API)
             setTimeout(function() {
                 successMessage.style.display = 'block';
                 form.reset();
@@ -1957,10 +1995,12 @@ export class AppController {
                 
                 // Scroll to success message
                 successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 500);
+                
+                console.log('✅ Form submission successful!');
+            }, 1500);
         });
         
-        // Handle Netlify form redirect (if configured)
+        // Handle Netlify form redirect (if configured in production)
         if (window.location.search.includes('submitted=true')) {
             document.getElementById('form-success').style.display = 'block';
             document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
