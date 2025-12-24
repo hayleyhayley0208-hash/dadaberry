@@ -406,15 +406,28 @@ export class AppController {
             .container { padding: 1rem; }
             h1 { font-size: 2rem; }
             .tagline { font-size: 1.1rem; margin-bottom: 2rem; }
-            .main-header { padding: 0.5rem 0; }
-            .header-container { padding: 0 1rem; flex-wrap: wrap; }
-            .header-logo { height: 50px; }
-            .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-            .nav-links a { font-size: 0.95rem; padding: 0.5rem; }
-            .carousel-container { height: 50vh; }
-            .carousel-section { height: 50vh; }
+            .main-header { padding: 0.8rem 0; }
+            .header-container { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            .header-logo { height: 60px; }
+            .nav-links { 
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                gap: 0.5rem;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(152, 109, 178, 0.2);
+            }
+            .nav-links a { font-size: 0.9rem; padding: 0.5rem 0.6rem; }
+            .carousel-section { padding-top: 150px; }
+            .carousel-container { height: 60vh; }
+            .carousel-section { height: calc(60vh + 150px); }
             .carousel-nav { width: 40px; height: 40px; font-size: 1.2rem; }
-            .slogan-section { margin-top: 50vh; padding: 2rem 1rem; }
+            .slogan-section { margin-top: calc(60vh + 150px); padding: 2rem 1rem; }
             .slogan-text { font-size: 2.8rem; line-height: 1.1; }
             .dada-image-section { height: 400px; }
             .carousel-nav.prev { left: 10px; }
@@ -1616,6 +1629,25 @@ export class AppController {
             .services-carousel-slide.active { width: 225px; height: 337.5px; }
         }
         @media (max-width: 768px) {
+            .main-header { padding: 0.8rem 0; }
+            .header-container { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            .header-logo { height: 60px; }
+            .nav-links { 
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                gap: 0.5rem;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(152, 109, 178, 0.2);
+            }
+            .nav-links a { font-size: 0.9rem; padding: 0.5rem 0.6rem; }
+            .header-line { top: 150px; }
+            .services-hero-section { padding-top: 150px; }
             .services-hero { flex-direction: column; padding: 2rem 1rem; }
             .services-hero-title { font-size: 3rem; text-align: center; }
             .services-title { font-size: 2.5rem; margin-bottom: 2rem; }
@@ -2106,14 +2138,30 @@ export class AppController {
             .contact-content { grid-template-columns: 1fr; gap: 3rem; padding: 0 1rem; }
         }
         @media (max-width: 768px) {
+            .main-header { padding: 0.8rem 0; }
+            .header-container { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            .header-logo { height: 60px; }
+            .nav-links { 
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                gap: 0.5rem;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(152, 109, 178, 0.2);
+            }
+            .nav-links a { font-size: 0.9rem; padding: 0.5rem 0.6rem; }
+            .header-line { display: none; }
+            .contact-hero-section { padding-top: 150px; }
             .contact-hero { flex-direction: column; padding: 2rem 1rem; }
             .contact-hero-title { font-size: 3rem; text-align: center; }
             .contact-container { padding: 2rem 0; }
             .contact-content { padding: 0 1rem; }
             .contact-form { padding: 2rem 1.5rem; }
-            .header-logo { height: 50px; }
-            .nav-links { gap: 1rem; }
-            .nav-links a { font-size: 0.95rem; }
         }
         @media (max-width: 480px) {
             .main-header { padding: 0.8rem 0; }
@@ -2526,6 +2574,25 @@ export class AppController {
             }
         }
         @media (max-width: 768px) {
+            .main-header { padding: 0.8rem 0; }
+            .header-container { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            .header-logo { height: 60px; }
+            .nav-links { 
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                gap: 0.5rem;
+                padding: 0.5rem 0;
+                border-top: 1px solid rgba(152, 109, 178, 0.2);
+            }
+            .nav-links a { font-size: 0.9rem; padding: 0.5rem 0.6rem; }
+            .header-line { display: none; }
+            .portfolio-hero-section { padding-top: 150px; }
             .portfolio-hero {
                 flex-direction: column;
                 padding: 2rem 1rem;
@@ -2540,15 +2607,6 @@ export class AppController {
             .portfolio-gallery {
                 column-count: 1;
                 column-gap: 0;
-            }
-            .header-logo {
-                height: 50px;
-            }
-            .nav-links {
-                gap: 1rem;
-            }
-            .nav-links a {
-                font-size: 0.95rem;
             }
         }
         @media (max-width: 480px) {
