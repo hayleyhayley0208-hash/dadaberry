@@ -1756,8 +1756,7 @@ export class AppController {
                         <div class="pricing-item">
                             <div class="pricing-title">Lifestyle Photography</div>
                             <div class="pricing-price">$39.99/hr</div>
-                            <div class="pricing-details">• You'll receive all original photos, along with 10 carefully retouched images.</div>
-                            <div class="pricing-details">• Additional retouched images are available at $2 per photo.</div>
+                            <div class="pricing-note">You'll receive all original photos, along with 10 carefully retouched images. Additional retouched images are available at $2 per photo.</div>
                         </div>
                     </div>
                 </div>
