@@ -301,19 +301,6 @@ export class AppController {
                 font-size: 1.5rem;
             }
         }
-        .gallery-card { 
-            background: white; 
-            border-radius: 0; 
-            padding: 4rem 3rem; 
-            box-shadow: none; 
-            margin-bottom: 3rem; 
-            width: 100%;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-        }
         .brand-description { font-size: 1.3rem; color: #444; line-height: 2; text-align: center; max-width: 900px; margin: 0 auto 3rem; font-weight: 300; }
         .what-you-get-section {
             background: white;
@@ -364,12 +351,6 @@ export class AppController {
         .image-description { padding: 2rem; }
         .image-description h3 { color: #986DB2; font-size: 1.8rem; margin-bottom: 1rem; }
         .image-description p { color: #555; font-size: 1.1rem; line-height: 1.8; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .gallery-item { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease; }
-        .gallery-item:hover { transform: scale(1.05); }
-        .gallery-item img { width: 100%; height: 350px; object-fit: cover; display: block; }
-        .gallery-item .overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; padding: 2rem; transform: translateY(100%); transition: transform 0.3s ease; }
-        .gallery-item:hover .overlay { transform: translateY(0); }
         .cta-section { text-align: center; padding: 4rem 2rem; background: transparent; border-radius: 0; box-shadow: none; }
         .cta-button { display: inline-block; padding: 1.2rem 3rem; background: white; color: #986DB2; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s ease; box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3); margin-top: 2rem; }
         .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(255, 255, 255, 0.5); }
@@ -391,7 +372,6 @@ export class AppController {
             .card { padding: 2.5rem 2rem; }
             .brand-description { font-size: 1.1rem; }
             .services { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
             .carousel-container { height: 60vh; }
             .carousel-section { height: 60vh; }
             .slogan-section { margin-top: 60vh; padding: 2.5rem 1.5rem; }
@@ -444,8 +424,6 @@ export class AppController {
             .image-description { padding: 1.5rem; }
             .image-description h3 { font-size: 1.5rem; }
             .image-description p { font-size: 1rem; }
-            .gallery-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .gallery-item img { height: 300px; }
             .cta-section { padding: 2.5rem 1.5rem; }
             .cta-section h2 { font-size: 2rem; }
             .cta-button { padding: 1rem 2.5rem; font-size: 1rem; }
@@ -507,12 +485,6 @@ export class AppController {
             .image-description { padding: 1rem 0; }
             .image-description h3 { font-size: 1.3rem; }
             .image-description p { font-size: 0.95rem; }
-            .gallery-card h2 { font-size: 1.75rem; }
-            .gallery-grid { gap: 1.2rem; }
-            .gallery-item { height: 300px; }
-            .gallery-item img { height: 300px; }
-            .overlay h3 { font-size: 1.3rem; }
-            .overlay p { font-size: 0.95rem; }
             .cta-section { padding: 2.5rem 1rem; }
             .cta-section h2 { font-size: 1.8rem; }
             .cta-section p { font-size: 1rem; }
@@ -809,28 +781,6 @@ export class AppController {
                     <h3>A smooth and friendly creative experience</h3>
                     <p>From communication to retouching and final delivery, everything is handled with care so you can relax and enjoy the results.</p>
                 </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="gallery-card">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 2rem; color: #986DB2; font-size: 2.5rem;">Our Creative Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="/imgs/IMG_5578.jpeg" alt="Creative Work 1">
-                    <div class="overlay">
-                        <h3>Moment of Serenity</h3>
-                        <p>Capturing tranquility in motion</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="/imgs/IMG_8775.jpeg" alt="Creative Work 2">
-                    <div class="overlay">
-                        <h3>Playful Elegance</h3>
-                        <p>Where grace meets spontaneity</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
