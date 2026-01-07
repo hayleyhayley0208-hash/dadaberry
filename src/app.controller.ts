@@ -303,7 +303,7 @@ export class AppController {
         }
         .brand-description { font-size: 1.3rem; color: #444; line-height: 2; text-align: center; max-width: 900px; margin: 0 auto 3rem; font-weight: 300; }
         .what-you-get-section {
-            background: white;
+            background: #986DB2;
             width: 100%;
             padding: 4rem 3rem;
             margin-bottom: 3rem;
@@ -312,7 +312,7 @@ export class AppController {
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
-            color: #2c3e50;
+            color: white;
             text-align: center;
             margin-bottom: 3rem;
         }
