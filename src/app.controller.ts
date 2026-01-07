@@ -312,31 +312,76 @@ export class AppController {
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
-            color: #986DB2;
+            color: #2c3e50;
             text-align: center;
             margin-bottom: 3rem;
         }
         .what-you-get-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .what-you-get-item {
-            text-align: center;
+        .what-you-get-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
-        .what-you-get-item h3 {
+        .what-you-get-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .what-you-get-card-top {
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .what-you-get-card-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);
+        }
+        .what-you-get-card-top.card-color-1 {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+        .what-you-get-card-top.card-color-2 {
+            background: linear-gradient(135deg, #87CEEB 0%, #5F9EA0 100%);
+        }
+        .what-you-get-card-top.card-color-3 {
+            background: linear-gradient(135deg, #98D8C8 0%, #6BC4A4 100%);
+        }
+        .what-you-get-card-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #986DB2;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .what-you-get-item p {
+        .what-you-get-card-bottom {
+            padding: 2.5rem 2rem;
+            background: white;
+        }
+        .what-you-get-card-description {
             font-size: 1.1rem;
             color: #555;
             line-height: 1.8;
+            margin: 0;
         }
         .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .service { text-align: center; padding: 2rem; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 15px; transition: transform 0.3s ease; }
@@ -409,7 +454,10 @@ export class AppController {
             .cta-section { padding: 3rem 1.5rem; }
             .what-you-get-section { padding: 3rem 2rem; }
             .what-you-get-section h2 { font-size: 2rem; }
-            .what-you-get-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+            .what-you-get-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+            .what-you-get-card-title { font-size: 1.75rem; }
+            .what-you-get-card-top { padding: 2.5rem 1.5rem; }
+            .what-you-get-card-bottom { padding: 2rem 1.5rem; }
         }
         @media (max-width: 768px) {
             .container { padding: 1rem; }
@@ -461,8 +509,10 @@ export class AppController {
             .what-you-get-section { padding: 2.5rem 1.5rem; }
             .what-you-get-section h2 { font-size: 1.75rem; margin-bottom: 2rem; }
             .what-you-get-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .what-you-get-item h3 { font-size: 1.3rem; }
-            .what-you-get-item p { font-size: 1rem; }
+            .what-you-get-card-title { font-size: 1.5rem; }
+            .what-you-get-card-top { padding: 2rem 1.5rem; }
+            .what-you-get-card-bottom { padding: 2rem 1.5rem; }
+            .what-you-get-card-description { font-size: 1rem; }
         }
         @media (max-width: 480px) {
             .container { padding: 1rem; }
@@ -523,8 +573,10 @@ export class AppController {
             .what-you-get-section { padding: 2rem 1rem; }
             .what-you-get-section h2 { font-size: 1.5rem; margin-bottom: 1.5rem; }
             .what-you-get-grid { gap: 1.5rem; }
-            .what-you-get-item h3 { font-size: 1.2rem; }
-            .what-you-get-item p { font-size: 0.95rem; }
+            .what-you-get-card-title { font-size: 1.3rem; }
+            .what-you-get-card-top { padding: 1.5rem 1rem; }
+            .what-you-get-card-bottom { padding: 1.5rem 1rem; }
+            .what-you-get-card-description { font-size: 0.95rem; }
         }
     </style>
     <script>
@@ -785,31 +837,34 @@ export class AppController {
             </div>
         </div>
         
-        <div class="container">
-        <div class="image-section">
-            <h2 style="text-align: center; margin-bottom: 3rem; color: white; font-size: 2.5rem; font-family: 'Poppins', sans-serif; font-weight: 700;">What You'll Get at Dadaberry</h2>
-            <div class="image-with-text">
-                <img src="/imgs/IMG_5506.jpeg" alt="Dada - Creative Inspiration">
-                <div class="image-description">
-                    <h3>Beautiful, natural photography</h3>
-                    <p>You will receive portraits or product photos that feel warm, authentic and visually pleasing.</p>
+        <div class="what-you-get-section">
+            <h2>What You'll Get at DadaBerry</h2>
+            <div class="what-you-get-grid">
+                <div class="what-you-get-card">
+                    <div class="what-you-get-card-top card-color-1">
+                        <h3 class="what-you-get-card-title">Beautiful Photography</h3>
+                    </div>
+                    <div class="what-you-get-card-bottom">
+                        <p class="what-you-get-card-description">You will receive portraits or product photos that feel warm, authentic and visually pleasing.</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="image-with-text reverse">
-                <img src="/imgs/IMG_5580.jpeg" alt="Dada - Artistic Expression">
-                <div class="image-description">
-                    <h3>Clean and simple graphic visuals</h3>
-                    <p>I create posters, social media graphics and light branding materials with a neat and aesthetic layout.</p>
+                
+                <div class="what-you-get-card">
+                    <div class="what-you-get-card-top card-color-2">
+                        <h3 class="what-you-get-card-title">Graphic Design</h3>
+                    </div>
+                    <div class="what-you-get-card-bottom">
+                        <p class="what-you-get-card-description">I create posters, social media graphics and light branding materials with a neat and aesthetic layout.</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="image-with-text">
-                <img src="/imgs/IMG_8747.jpeg" alt="Dada - Visual Storytelling">
-                <div class="image-description">
-                    <h3>A smooth and friendly creative experience</h3>
-                    <p>From communication to retouching and final delivery, everything is handled with care so you can relax and enjoy the results.</p>
-                </div>
+                
+                <div class="what-you-get-card">
+                    <div class="what-you-get-card-top card-color-3">
+                        <h3 class="what-you-get-card-title">Smooth Experience</h3>
+                    </div>
+                    <div class="what-you-get-card-bottom">
+                        <p class="what-you-get-card-description">From communication to retouching and final delivery, everything is handled with care so you can relax and enjoy the results.</p>
+                    </div>
                 </div>
             </div>
         </div>
