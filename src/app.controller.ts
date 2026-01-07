@@ -370,6 +370,19 @@ export class AppController {
         .cta-section p { color: #444; font-size: 1.2rem; margin-bottom: 2rem; }
         .cta-button { display: inline-block; padding: 1.2rem 3rem; background: #986DB2; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s ease; box-shadow: 0 8px 25px rgba(152, 109, 178, 0.4); margin-top: 2rem; }
         .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(152, 109, 178, 0.6); }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 2rem;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-top: 0;
+        }
+        .footer p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
         @media (max-width: 1200px) {
             .container { max-width: 95%; }
             .carousel-section { max-width: 100%; }
@@ -808,6 +821,10 @@ export class AppController {
             </p>
             <a href="/contact" class="cta-button">Start Your Project</a>
         </div>
+        
+        <footer class="footer">
+            <p>&copy; 2025 DadaBerry. All rights reserved.</p>
+        </footer>
 </body>
 </html>
     `);
@@ -1480,6 +1497,19 @@ export class AppController {
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(255, 255, 255, 0.5);
         }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 2rem;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-top: 0;
+        }
+        .footer p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
         @media (max-width: 768px) {
             .services-cta-section {
                 padding: 3rem 1.5rem;
@@ -1902,6 +1932,10 @@ export class AppController {
             <a href="/contact" class="services-cta-button">Start Your Project</a>
         </div>
     </section>
+    
+    <footer class="footer">
+        <p>&copy; 2025 DadaBerry. All rights reserved.</p>
+    </footer>
 </body>
 </html>
     `);
@@ -2095,6 +2129,19 @@ export class AppController {
             color: white;
             text-decoration: underline;
             font-weight: 600;
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 2rem;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-top: 0;
+        }
+        .footer p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
         }
         @media (max-width: 968px) {
             .contact-hero-title { font-size: 4rem; }
@@ -2296,6 +2343,10 @@ export class AppController {
             document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
+    
+    <footer class="footer">
+        <p>&copy; 2025 DadaBerry. All rights reserved.</p>
+    </footer>
 </body>
 </html>
     `);
@@ -2639,6 +2690,19 @@ export class AppController {
         .portfolio-cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(255, 255, 255, 0.5);
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 2rem;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-top: 0;
+        }
+        .footer p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
         }
         @media (max-width: 768px) {
             .portfolio-cta-section {
@@ -3114,6 +3178,10 @@ export class AppController {
         </p>
         <a href="/contact" class="portfolio-cta-button">Start Your Project</a>
     </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 DadaBerry. All rights reserved.</p>
+    </footer>
 </body>
 </html>
     `);
