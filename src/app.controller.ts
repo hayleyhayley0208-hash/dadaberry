@@ -241,7 +241,20 @@ export class AppController {
         h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; color: white; text-shadow: none; font-family: 'Poppins', sans-serif; }
         .tagline { font-size: 1.5rem; color: rgba(255, 255, 255, 0.95); font-weight: 300; margin-bottom: 3rem; font-family: 'Poppins', sans-serif; }
         .card { background: white; border-radius: 0; padding: 4rem 3rem; box-shadow: none; margin-bottom: 3rem; }
-        .intro-card { background: white; border-radius: 0; padding: 4rem 3rem; box-shadow: none; margin-bottom: 3rem; width: 100%; max-width: 100%; }
+        .intro-card { 
+            background: white; 
+            border-radius: 0; 
+            padding: 4rem 3rem; 
+            box-shadow: none; 
+            margin-bottom: 0;
+            margin-top: 0;
+            width: 100vw; 
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
