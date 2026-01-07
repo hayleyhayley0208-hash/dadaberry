@@ -358,6 +358,10 @@ export class AppController {
             padding: 3rem 2rem;
             position: relative;
             overflow: hidden;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .what-you-get-card-top::before {
             content: '';
@@ -474,7 +478,7 @@ export class AppController {
             .what-you-get-section h2 { font-size: 2rem; }
             .what-you-get-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
             .what-you-get-card-title { font-size: 1.75rem; }
-            .what-you-get-card-top { padding: 2.5rem 1.5rem; }
+            .what-you-get-card-top { padding: 2.5rem 1.5rem; min-height: 160px; }
             .what-you-get-card-bottom { padding: 2rem 1.5rem; }
         }
         @media (max-width: 768px) {
@@ -528,7 +532,7 @@ export class AppController {
             .what-you-get-section h2 { font-size: 1.75rem; margin-bottom: 2rem; }
             .what-you-get-grid { grid-template-columns: 1fr; gap: 2rem; }
             .what-you-get-card-title { font-size: 1.5rem; }
-            .what-you-get-card-top { padding: 2rem 1.5rem; }
+            .what-you-get-card-top { padding: 2rem 1.5rem; min-height: 140px; }
             .what-you-get-card-bottom { padding: 2rem 1.5rem; }
             .what-you-get-card-description { font-size: 1rem; }
         }
@@ -592,7 +596,7 @@ export class AppController {
             .what-you-get-section h2 { font-size: 1.5rem; margin-bottom: 1.5rem; }
             .what-you-get-grid { gap: 1.5rem; }
             .what-you-get-card-title { font-size: 1.3rem; }
-            .what-you-get-card-top { padding: 1.5rem 1rem; }
+            .what-you-get-card-top { padding: 1.5rem 1rem; min-height: 120px; }
             .what-you-get-card-bottom { padding: 1.5rem 1rem; }
             .what-you-get-card-description { font-size: 0.95rem; }
         }
