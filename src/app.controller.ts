@@ -319,7 +319,8 @@ export class AppController {
             background: #986DB2;
             width: 100vw;
             padding: 4rem 3rem;
-            margin-bottom: 3rem;
+            margin-bottom: 0;
+            margin-top: 0;
             position: relative;
             left: 50%;
             right: 50%;
