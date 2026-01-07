@@ -351,9 +351,9 @@ export class AppController {
         .image-description { padding: 2rem; }
         .image-description h3 { color: #986DB2; font-size: 1.8rem; margin-bottom: 1rem; }
         .image-description p { color: #555; font-size: 1.1rem; line-height: 1.8; }
-        .cta-section { text-align: center; padding: 4rem 2rem; background: white; border-radius: 0; box-shadow: none; }
-        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: #986DB2; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s ease; box-shadow: 0 8px 25px rgba(152, 109, 178, 0.4); margin-top: 2rem; }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(152, 109, 178, 0.6); }
+        .cta-section { text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #986DB2 0%, #7A5A8F 100%); border-radius: 0; box-shadow: none; }
+        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: white; color: #986DB2; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s ease; box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3); margin-top: 2rem; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(255, 255, 255, 0.5); }
         @media (max-width: 1200px) {
             .container { max-width: 95%; }
             .carousel-section { max-width: 100%; }
@@ -787,8 +787,8 @@ export class AppController {
         
         <div class="container">
         <div class="cta-section">
-            <h2 style="color: #000000; margin-bottom: 1rem; font-size: 2.5rem;">Ready to Create Something Amazing?</h2>
-            <p style="color: #444; font-size: 1.2rem; margin-bottom: 2rem;">
+            <h2 style="color: white; margin-bottom: 1rem; font-size: 2.5rem;">Ready to Create Something Amazing?</h2>
+            <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">
                 Let's bring your creative vision to life. Get in touch and let's start your next project.
             </p>
             <a href="/contact" class="cta-button">Start Your Project</a>
